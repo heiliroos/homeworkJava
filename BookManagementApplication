@@ -1,0 +1,66 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    private static ArrayList<String> books = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command;
+
+        while (true) {
+            System.out.println("1. Add a book");
+            System.out.println("2. Remove a book");
+            System.out.println("3. List all books");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            command = scanner.nextLine();
+
+            switch (command) {
+                case "1":
+                    addBook(scanner);
+                    break;
+                case "2":
+                    removeBook(scanner);
+                    break;
+                case "3":
+                    listBooks();
+                    break;
+                case "4":
+                    System.out.println("Exiting the application.");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid command. Try again.");
+            }
+        }
+    }
+
+    private static void addBook(Scanner scanner) {
+        System.out.print("Enter the name of the book to add: ");
+        String bookName = scanner.nextLine();
+        books.add(bookName);
+        System.out.println("Book added.");
+    }
+
+    private static void removeBook(Scanner scanner) {
+        System.out.print("Enter the name of the book to remove: ");
+        String bookName = scanner.nextLine();
+        if (books.remove(bookName)) {
+            System.out.println("Book removed.");
+        } else {
+            System.out.println("Book not found.");
+        }
+    }
+
+    private static void listBooks() {
+        if (books.isEmpty()) {
+            System.out.println("No books in the list.");
+        } else {
+            System.out.println("Books in the list:");
+            for (String book : books) {
+                System.out.println(book);
+            }
+        }
+    }
+}
